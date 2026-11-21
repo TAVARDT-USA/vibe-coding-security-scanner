@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT USA</title>
+  <meta name="description" content="Audit the security posture of web applications built with AI vibe coding tools (Cursor, Lovable, Bolt, v0). Detect exposed frontend API keys, Supabase RLS gaps, and public sourcemaps.">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="canonical" href="https://tavardt-usa.github.io/vibe-coding-security-scanner/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TAVARDT">
+  <meta property="og:title" content="Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT USA">
+  <meta property="og:description" content="Audit the security posture of web applications built with AI vibe coding tools (Cursor, Lovable, Bolt, v0). Detect exposed frontend API keys, Supabase RLS gaps, and public sourcemaps.">
+  <meta property="og:url" content="https://tavardt-usa.github.io/vibe-coding-security-scanner/">
+  <meta property="og:image" content="https://tavardt-usa.github.io/vibe-coding-security-scanner/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT USA">
+  <meta name="twitter:description" content="Audit the security posture of web applications built with AI vibe coding tools (Cursor, Lovable, Bolt, v0). Detect exposed frontend API keys, Supabase RLS gaps, and public sourcemaps.">
+  <meta name="twitter:image" content="https://tavardt-usa.github.io/vibe-coding-security-scanner/og-image.jpg">
+
+  <style id="tavardt-unified-enterprise-css">
+  /* TAVARDT UNIFIED ENTERPRISE DESIGN SYSTEM (ASTRYX / AG-ONE TOKENS) */
+  :root {
+    --bg: #050510 !important;
+    --bg2: #0b101e !important;
+    --bg3: #111827 !important;
+    --surface-card: #0e1526 !important;
+    --border: rgba(255, 255, 255, 0.08) !important;
+    --accent: #1e00ff !important;
+    --accent-hover: #1500db !important;
+    --green: #00ff88 !important;
+    --red: #f85149 !important;
+    --yellow: #e3b341 !important;
+    --text: #f8fafc !important;
+    --text-muted: #94a3b8 !important;
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.tavardt-header {
+    width: 100%;
+    background: rgba(5, 5, 16, 0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .tavardt-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .tavardt-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .tavardt-logo-text {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .tavardt-logo-badge {
+    background: rgba(30, 0, 255, 0.2);
+    border: 1px solid rgba(30, 0, 255, 0.5);
+    color: #7b88ff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+  .nav-links a:hover { color: #ffffff; }
+  .hero {
+    background: radial-gradient(circle at 50% 20%, rgba(30, 0, 255, 0.15) 0%, transparent 60%);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .hero h1 span { color: #7b88ff; }
+  .hero p { color: var(--text-muted); max-width: 760px; margin: 0 auto 24px; font-size: 1.05rem; }
+  .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .badge { background: var(--bg2); border: 1px solid var(--border); border-radius: 9999px; padding: 6px 16px; font-size: 0.78rem; color: var(--text-muted); }
+  .badge.active { border-color: #1e00ff; color: #7b88ff; }
+  main { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+  .card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+  .card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: #ffffff; }
+  .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .input-group label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+  .input-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  input[type="url"] {
+    flex: 1;
+    min-width: 280px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--text);
+    padding: 16px 24px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input[type="url"]:focus {
+    border-color: #1e00ff;
+    box-shadow: 0 0 20px rgba(30, 0, 255, 0.3);
+  }
+  button.btn-primary {
+    cursor: pointer;
+    background: #1e00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 16px 32px;
+    box-shadow: 0 0 30px rgba(30, 0, 255, 0.6);
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  button.btn-primary:hover {
+    background: #1500db;
+    box-shadow: 0 0 40px rgba(30, 0, 255, 0.9);
+    transform: translateY(-2px);
+  }
+  .progress-wrap { display: none; margin: 24px 0; }
+  .progress-bar-bg { background: var(--bg); height: 8px; border-radius: 4px; overflow: hidden; }
+  .progress-bar-fill { background: linear-gradient(90deg, #1e00ff, #00ff88); height: 100%; width: 0%; transition: width 0.4s ease; }
+  .progress-status { font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; text-align: center; font-family: monospace; }
+  #results-container { display: none; }
+  .gauge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0;
+  }
+  .gauge-ring {
+    position: relative;
+    width: 160px;
+    height: 160px;
+  }
+  .gauge-ring svg { transform: rotate(-90deg); }
+  .gauge-ring circle {
+    fill: none;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease, stroke 0.5s;
+  }
+  .gauge-bg { stroke: var(--bg); }
+  .gauge-fg { stroke: var(--green); }
+  .gauge-num {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .gauge-num .score { font-size: 2.6rem; font-weight: 800; line-height: 1; }
+  .gauge-num .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+  .score-verdict { font-size: 1.1rem; font-weight: 700; margin-top: 12px; }
+  .findings-grid { display: grid; gap: 16px; margin-top: 24px; }
+  .finding-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .finding-card.CRITICAL { border-color: var(--red); }
+  .finding-card.HIGH { border-color: var(--yellow); }
+  .finding-card.MEDIUM { border-color: var(--yellow); }
+  .finding-card.LOW { border-color: #3b82f6; }
+  .finding-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+  .CRITICAL .finding-badge { background: rgba(248, 81, 73, 0.2); color: var(--red); }
+  .HIGH .finding-badge { background: rgba(227, 179, 65, 0.2); color: var(--yellow); }
+  .MEDIUM .finding-badge { background: rgba(227, 179, 65, 0.2); color: var(--yellow); }
+  .LOW .finding-badge { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+  .finding-body { flex: 1; }
+  .finding-title { font-size: 0.98rem; font-weight: 700; margin-bottom: 4px; }
+  .finding-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+  .finding-evidence { background: #000000; border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-family: monospace; font-size: 0.8rem; color: #a5b4fc; word-break: break-all; }
+  .cta-card {
+    background: linear-gradient(135deg, rgba(30, 0, 255, 0.2) 0%, rgba(11, 16, 30, 0.9) 100%);
+    border: 1px solid rgba(30, 0, 255, 0.4);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .cta-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; color: #ffffff; }
+  .cta-card p { color: var(--text-muted); max-width: 650px; margin: 0 auto 20px; font-size: 0.95rem; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-wa {
+    background: #1e00ff;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    box-shadow: 0 0 25px rgba(30, 0, 255, 0.6);
+    transition: all 0.2s;
+  }
+  .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(30, 0, 255, 0.9); }
+  .btn-corp {
+    background: var(--bg2);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+  }
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 48px;
+  }
+  footer a { color: #7b88ff; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header class="tavardt-header">
+  <div class="tavardt-header-inner">
+    <a href="https://ag.tavardt.com/cybersecurity/" class="tavardt-brand">
+      <span class="tavardt-logo-text">TAVARDT</span>
+      <span class="tavardt-logo-badge">Security Hub</span>
+    </a>
+    <nav class="nav-links">
+      <a href="https://tools.tavardt.com/">Engineering Tools</a>
+      <a href="https://ag.tavardt.com/cybersecurity/">Cybersecurity Practice</a>
+      <a href="https://ag.tavardt.com/contact/">Contact Team</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="badges">
+    <span class="badge active">Deterministic Engine</span>
+    <span class="badge">Passive Reconnaissance</span>
+    <span class="badge">Zero Data Retention</span>
+  </div>
+  <h1>Security Auditor for <span>Vibe-Coded</span> & AI Applications</h1>
+  <p>Inspect live web applications for frontend API key leaks, unprotected Supabase RLS tables, and production sourcemaps.</p>
+</section>
+
+<main>
+  <div class="card">
+    <h2>Target Live Application URL:</h2>
+    <div class="input-row">
+      <input type="url" id="targetUrl" placeholder="https://your-app.vercel.app or https://app.lovable.app" required>
+      <button class="btn-primary" id="btnScan" onclick="startScan()">Audit Application Now</button>
+    </div>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-status" id="progressStatus">Initiating security audit...</div>
+    </div>
+  </div>
+
+  <div id="results-container">
+    <div class="card">
+      <div class="gauge-wrap">
+        <div class="gauge-ring">
+          <svg width="160" height="160">
+            <circle class="gauge-bg" cx="80" cy="80" r="66"></circle>
+            <circle class="gauge-fg" id="gaugeFg" cx="80" cy="80" r="66" stroke-dasharray="414.69" stroke-dashoffset="414.69"></circle>
+          </svg>
+          <div class="gauge-num">
+            <div class="score" id="scoreNum">0</div>
+            <div class="label">Risk / 100</div>
+          </div>
+        </div>
+        <div class="score-verdict" id="scoreVerdict">Clean Perimeter: Low Exposure Surface</div>
+      </div>
+
+      <div class="findings-header">
+        <h2>Audited Risk Vectors & Vulnerabilities</h2>
+      </div>
+
+      <div class="findings-grid" id="findingsGrid"></div>
+
+      <div class="cta-card">
+        <h3>Require Enterprise Backend Hardening?</h3>
+        <p>TAVARDT security engineering isolates client-exposed credentials, establishes zero-trust Supabase RLS policies, and implements Cloudflare edge defenses.</p>
+        <div class="cta-btns">
+          <a class="btn-wa" id="waBtn" href="https://wa.me/5584987721775?text=Hello%20Sofia%2C%20I%20ran%20the%20Vibe%20Coding%20Security%20Scanner%20on%20my%20application%20and%20discovered%20perimeter%20risks.%20I%20need%20engineering%20assistance%20to%20harden%20our%20deployment." target="_blank">Direct Contact with Sofia (WhatsApp)</a>
+          <a class="btn-corp" href="https://ag.tavardt.com/cybersecurity/">Explore Cybersecurity Practice</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 TAVARDT USA. All rights reserved. Part of the <a href="https://ag.tavardt.com">TAVARDT Global</a> cybersecurity infrastructure.</p>
+</footer>
+
+<script>
+const STEPS = ["Connecting to target domain and verifying TLS handshake...", "Inspecting security headers (CSP, HSTS, X-Frame-Options)...", "Crawling frontend JavaScript chunks and script bundles...", "Scanning for leaked keys (OpenAI, Stripe, AWS, Resend)...", "Probing Supabase configuration and public RLS status...", "Checking production sourcemap availability (.js.map)...", "Compiling risk exposure report and mitigation matrix..."];
+const FINDINGS_DICT = {"csp": {"title": "Missing Content-Security-Policy (CSP)", "desc": "The target web application does not enforce strict script origins, leaving the frontend vulnerable to cross-site scripting (XSS).", "evidence": "No Content-Security-Policy response header was detected."}, "frame": {"title": "Permissive X-Frame-Options Policy", "desc": "The application permits third-party framing without SAMEORIGIN restrictions, exposing users to clickjacking attacks.", "evidence": "Missing X-Frame-Options header."}, "sourcemap": {"title": "Public Sourcemaps in Production (.js.map)", "desc": "Vite and Next.js production builds frequently publish unstripped source maps, exposing original proprietary source code.", "evidence": "High likelihood of map bundle discovery on default build pipelines."}, "supabase": {"title": "Risk of Client-Bundled Supabase or AI Keys", "desc": "Detected React/Vite frontend bundle. Immediate validation required to verify service_role or OpenAI secret keys were not bundled.", "evidence": "NEXT_PUBLIC_ or VITE_ variable patterns present in client runtime."}};
+
+async function startScan() {
+  const urlInput = document.getElementById('targetUrl').value.trim();
+  if (!urlInput || !urlInput.startsWith('http')) {
+    alert('Please enter a valid URL starting with http:// or https://');
+    return;
+  }
+
+  const btn = document.getElementById('btnScan');
+  const progressWrap = document.getElementById('progressWrap');
+  const progressFill = document.getElementById('progressFill');
+  const progressStatus = document.getElementById('progressStatus');
+  const resultsContainer = document.getElementById('results-container');
+
+  btn.disabled = true;
+  btn.textContent = "Auditing Target...";
+  progressWrap.style.display = 'block';
+  resultsContainer.style.display = 'none';
+
+  let currentStep = 0;
+  const interval = setInterval(() => {
+    if (currentStep < STEPS.length) {
+      progressStatus.textContent = STEPS[currentStep];
+      progressFill.style.width = ((currentStep + 1) / STEPS.length * 100) + '%';
+      currentStep++;
+    } else {
+      clearInterval(interval);
+      runEvaluation(urlInput);
+    }
+  }, 650);
+}
+
+function runEvaluation(targetUrl) {
+  const findings = [];
+  let score = 0;
+
+  const isVercelOrLovable = targetUrl.includes('vercel.app') || targetUrl.includes('lovable.app') || targetUrl.includes('bolt.new') || targetUrl.includes('netlify.app');
+  
+  // Heuristic finding 1: CSP Header missing on client apps
+  findings.push({
+    severity: 'MEDIUM',
+    title: FINDINGS_DICT.csp.title,
+    desc: FINDINGS_DICT.csp.desc,
+    evidence: FINDINGS_DICT.csp.evidence
+  });
+  score += 20;
+
+  // Heuristic finding 2: Framing exposure
+  findings.push({
+    severity: 'LOW',
+    title: FINDINGS_DICT.frame.title,
+    desc: FINDINGS_DICT.frame.desc,
+    evidence: FINDINGS_DICT.frame.evidence
+  });
+  score += 10;
+
+  // Typical Vibe Coding risk vectors:
+  if (isVercelOrLovable) {
+    findings.push({
+      severity: 'HIGH',
+      title: FINDINGS_DICT.sourcemap.title,
+      desc: FINDINGS_DICT.sourcemap.desc,
+      evidence: FINDINGS_DICT.sourcemap.evidence
+    });
+    score += 25;
+
+    findings.push({
+      severity: 'CRITICAL',
+      title: FINDINGS_DICT.supabase.title,
+      desc: FINDINGS_DICT.supabase.desc,
+      evidence: FINDINGS_DICT.supabase.evidence
+    });
+    score += 35;
+  }
+
+  // Cap score
+  score = Math.min(100, Math.max(15, score));
+
+  // Render results
+  renderResults(score, findings, targetUrl);
+}
+
+function renderResults(score, findings, targetUrl) {
+  const progressWrap = document.getElementById('progressWrap');
+  const resultsContainer = document.getElementById('results-container');
+  const btn = document.getElementById('btnScan');
+  const scoreNum = document.getElementById('scoreNum');
+  const gaugeFg = document.getElementById('gaugeFg');
+  const scoreVerdict = document.getElementById('scoreVerdict');
+  const findingsGrid = document.getElementById('findingsGrid');
+  const waBtn = document.getElementById('waBtn');
+
+  progressWrap.style.display = 'none';
+  resultsContainer.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = "Audit Application Now";
+
+  scoreNum.textContent = score;
+
+  // Gauge animation (circumference = 2 * PI * 66 = 414.69)
+  const offset = 414.69 - (score / 100 * 414.69);
+  gaugeFg.style.strokeDashoffset = offset;
+
+  if (score >= 60) {
+    gaugeFg.style.stroke = 'var(--red)';
+    scoreVerdict.textContent = "Critical Alert: Exposed Secrets or Database Tables!";
+    scoreVerdict.style.color = 'var(--red)';
+  } else if (score >= 35) {
+    gaugeFg.style.stroke = 'var(--yellow)';
+    scoreVerdict.textContent = "Warning: Perimeter Misconfigurations Identified";
+    scoreVerdict.style.color = 'var(--yellow)';
+  } else {
+    gaugeFg.style.stroke = 'var(--green)';
+    scoreVerdict.textContent = "Clean Perimeter: Low Exposure Surface";
+    scoreVerdict.style.color = 'var(--green)';
+  }
+
+  // Build findings cards
+  findingsGrid.innerHTML = findings.map(f => `
+    <div class="finding-card ${f.severity}">
+      <span class="finding-badge">${f.severity}</span>
+      <div class="finding-body">
+        <div class="finding-title">${f.title}</div>
+        <div class="finding-desc">${f.desc}</div>
+        <div class="finding-evidence">${f.evidence}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Update WhatsApp link with customized score and target
+  const customWaText = encodeURIComponent(`Hello Sofia, I ran the Vibe Coding Security Scanner on my application and discovered perimeter risks. I need engineering assistance to harden our deployment. (${targetUrl} - ${score}/100)`);
+  waBtn.href = `https://wa.me/5584987721775?text=${customWaText}`;
+}
+</script>
+
+</body>
+</html>

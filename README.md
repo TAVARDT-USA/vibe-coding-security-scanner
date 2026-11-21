@@ -1,5 +1,7 @@
 # Vibe Coding Security Scanner & AI-Generated App Auditor | TAVARDT USA
 
+[![English (US) Online Scanner](https://img.shields.io/badge/Online%20Web%20Scanner-Test%20Live%20App-1e00ff.svg?style=for-the-badge)](https://tavardt-usa.github.io/vibe-coding-security-scanner/)
+
 [![Licence MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Vibe Coding Security](https://img.shields.io/badge/Vibe%20Coding-Security%20Hardened-00d26a.svg)](README.md)
 [![Language](https://img.shields.io/badge/Language-English%20(US)-green.svg)](README.md)
