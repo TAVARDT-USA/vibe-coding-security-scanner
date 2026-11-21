@@ -119,6 +119,14 @@
         },
         {
           "@type": "Question",
+          "name": "Why do Supabase Row Level Security (RLS) policies fail in AI apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Natural language coding prompts create Postgres tables without enabling RLS rules, allowing any user holding the public anon key to read or alter arbitrary database records."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "How does TAVARDT assist engineering teams?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -163,7 +171,7 @@
     -webkit-font-smoothing: antialiased !important;
   }
 
-  /* HEADER: STRICT FULL-WIDTH STICKY GLASSMORPHISM */
+  /* HEADER: STRICT FULL-WIDTH STICKY GLASSMORPHISM (1200px INNER) */
   header.tavardt-header {
     width: 100% !important;
     display: block !important;
@@ -235,11 +243,12 @@
     color: #ffffff !important;
   }
 
-  /* HERO */
+  /* HERO: UNIFIED 1200px WIDTH */
   .tavardt-hero {
-    max-width: 1000px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 48px 24px 28px !important;
+    padding: 48px 32px 28px !important;
     text-align: center !important;
     box-sizing: border-box !important;
     background: transparent !important;
@@ -259,26 +268,30 @@
   .tavardt-hero p {
     font-size: 1.05rem !important;
     color: #94a3b8 !important;
-    max-width: 720px !important;
+    max-width: 840px !important;
     margin: 0 auto !important;
     line-height: 1.6 !important;
   }
 
-  /* MAIN WRAPPER */
+  /* MAIN CONTENT: 100% WIDTH ALIGNED TO 1200px WITH HEADER AND FOOTER */
   main {
-    max-width: 960px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 24px 20px 48px !important;
+    padding: 24px 32px 48px !important;
+    box-sizing: border-box !important;
   }
 
-  /* CARDS */
+  /* FULL-WIDTH CARDS */
   .card {
+    width: 100% !important;
     background: var(--surface-card) !important;
     border: 1px solid var(--border) !important;
     border-radius: 16px !important;
-    padding: 32px !important;
+    padding: 36px 32px !important;
     margin-bottom: 32px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    box-sizing: border-box !important;
   }
   .card h2 {
     font-size: 1.25rem !important;
@@ -317,7 +330,7 @@
     border-radius: 9999px !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
-    padding: 16px 32px !important;
+    padding: 16px 36px !important;
     box-shadow: 0 0 30px rgba(30, 0, 255, 0.6) !important;
     transition: all 0.3s !important;
     white-space: nowrap !important;
@@ -335,7 +348,7 @@
   .progress-status { font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; text-align: center; font-family: monospace; }
 
   /* RESULTS GAUGE */
-  #results-container { display: none; }
+  #results-container { display: none; width: 100% !important; }
   .gauge-wrap {
     display: flex;
     flex-direction: column;
@@ -368,7 +381,7 @@
   .score-verdict { font-size: 1.1rem; font-weight: 700; margin-top: 12px; }
 
   /* FINDINGS GRID */
-  .findings-grid { display: grid; gap: 16px; margin-top: 24px; }
+  .findings-grid { display: grid; gap: 16px; margin-top: 24px; width: 100%; }
   .finding-card {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -398,76 +411,83 @@
   .finding-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
   .finding-evidence { background: #000000; border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-family: monospace; font-size: 0.8rem; color: #a5b4fc; word-break: break-all; }
 
-  /* AEO DEFINITION BLOCK (SELF-CONTAINED CITABLE ANSWER) */
+  /* AEO DEFINITION BLOCK (100% WIDTH) */
   .aeo-card {
+    width: 100% !important;
     background: var(--surface-card);
     border: 1px solid rgba(30, 0, 255, 0.3);
     border-left: 4px solid #1e00ff;
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: 16px;
+    padding: 28px 32px;
     margin-bottom: 32px;
+    box-sizing: border-box !important;
   }
   .aeo-card h2 {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #ffffff;
     margin-bottom: 12px;
     font-weight: 700;
   }
   .aeo-card p {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: #cbd5e1;
     line-height: 1.7;
   }
 
-  /* GEO TECHNICAL VECTORS GRID */
+  /* GEO TECHNICAL VECTORS GRID (100% WIDTH) */
   .vectors-section {
+    width: 100% !important;
     margin-bottom: 36px;
+    box-sizing: border-box !important;
   }
   .vectors-section h2 {
     font-size: 1.25rem;
     color: #ffffff;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     font-weight: 700;
   }
   .vectors-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 16px;
+    width: 100%;
   }
   .vector-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 20px;
+    padding: 22px;
   }
   .vector-title {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 8px;
   }
   .vector-desc {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
     line-height: 1.5;
   }
 
-  /* FAQ ACCORDION SECTION (AEO/GEO CITABILITY) */
+  /* FAQ ACCORDION SECTION (100% WIDTH - EXACTLY 5 FAQS) */
   .faq-section {
+    width: 100% !important;
     margin-bottom: 36px;
+    box-sizing: border-box !important;
   }
   .faq-section h2 {
     font-size: 1.25rem;
     color: #ffffff;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     font-weight: 700;
   }
   .faq-item {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 18px 24px;
     transition: border-color 0.2s;
   }
   .faq-item[open] {
@@ -476,37 +496,39 @@
   .faq-question {
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     color: #ffffff;
     outline: none;
   }
   .faq-answer {
     margin-top: 12px;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.6;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: 12px;
   }
 
-  /* CTA CARD */
+  /* CTA CARD (100% WIDTH) */
   .cta-card {
+    width: 100% !important;
     background: linear-gradient(135deg, rgba(30, 0, 255, 0.2) 0%, rgba(11, 16, 30, 0.9) 100%);
     border: 1px solid rgba(30, 0, 255, 0.4);
     border-radius: 16px;
-    padding: 32px;
+    padding: 36px 32px;
     text-align: center;
     margin-top: 32px;
+    box-sizing: border-box !important;
   }
-  .cta-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; color: #ffffff; }
-  .cta-card p { color: var(--text-muted); max-width: 650px; margin: 0 auto 20px; font-size: 0.95rem; }
+  .cta-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 10px; color: #ffffff; }
+  .cta-card p { color: var(--text-muted); max-width: 720px; margin: 0 auto 24px; font-size: 0.98rem; }
   .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
   .btn-wa {
     background: #1e00ff;
     color: #ffffff;
     text-decoration: none;
     font-weight: 700;
-    padding: 14px 28px;
+    padding: 14px 32px;
     border-radius: 9999px;
     box-shadow: 0 0 25px rgba(30, 0, 255, 0.6);
     transition: all 0.2s;
@@ -517,12 +539,12 @@
     color: var(--text);
     text-decoration: none;
     font-weight: 600;
-    padding: 14px 24px;
+    padding: 14px 28px;
     border-radius: 9999px;
     border: 1px solid var(--border);
   }
 
-  /* INSTITUTIONAL FOOTER */
+  /* INSTITUTIONAL FOOTER: 1200px INNER */
   .tavardt-footer {
     width: 100% !important;
     background: #050510 !important;
@@ -533,15 +555,21 @@
   .tavardt-footer-inner {
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 48px 24px 32px !important;
+    padding: 48px 32px 32px !important;
     display: grid !important;
     grid-template-columns: 2fr 1fr 1.5fr !important;
     gap: 40px !important;
+    box-sizing: border-box !important;
   }
   @media (max-width: 768px) {
     .tavardt-footer-inner {
       grid-template-columns: 1fr !important;
       gap: 28px !important;
+      padding: 36px 20px 24px !important;
+    }
+    .tavardt-header-inner, .tavardt-hero, main {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
     }
   }
   .tavardt-footer-logo {
@@ -600,11 +628,12 @@
   .tavardt-footer-bottom {
     max-width: 1200px !important;
     margin: 0 auto !important;
-    padding: 20px 24px !important;
+    padding: 20px 32px !important;
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
     text-align: center !important;
     font-size: 0.82rem !important;
     color: #64748b !important;
+    box-sizing: border-box !important;
   }
   </style>
 </head>
@@ -678,13 +707,13 @@
     </div>
   </div>
 
-  <!-- AEO CITABLE DEFINITION SECTION -->
+  <!-- AEO CITABLE DEFINITION SECTION (100% WIDTH) -->
   <section class="aeo-card">
     <h2>What is the Vibe Coding Security Scanner?</h2>
     <p>The TAVARDT Vibe Coding Security Scanner is a defensive perimeter diagnostic tool built to audit web applications generated by AI development engines (such as Cursor, Lovable, Bolt.new, and v0). The scanner executes passive client inspections to detect exposed frontend API credentials, unprotected Supabase Row Level Security (RLS) tables, public sourcemaps (.js.map), and missing HTTP security headers.</p>
   </section>
 
-  <!-- GEO TECHNICAL VECTORS SECTION -->
+  <!-- GEO TECHNICAL VECTORS SECTION (100% WIDTH) -->
   <section class="vectors-section">
     <h2>Critical Risk Vectors in AI-Generated Applications</h2>
     <div class="vectors-grid">
@@ -707,7 +736,7 @@
     </div>
   </section>
 
-  <!-- AEO/GEO FAQ SECTION -->
+  <!-- AEO/GEO FAQ SECTION (100% WIDTH - EXACTLY 5 FAQS) -->
   <section class="faq-section">
     <h2>Frequently Asked Questions (FAQ) & Security Guidelines</h2>
       <details class="faq-item">
@@ -721,6 +750,10 @@
       <details class="faq-item">
         <summary class="faq-question">How do you prevent client-side API key leakage?</summary>
         <div class="faq-answer">All calls to external AI or payment APIs must be routed through serverless edge proxies (such as Cloudflare Workers), preventing client visibility of secrets.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Why do Supabase Row Level Security (RLS) policies fail in AI apps?</summary>
+        <div class="faq-answer">Natural language coding prompts create Postgres tables without enabling RLS rules, allowing any user holding the public anon key to read or alter arbitrary database records.</div>
       </details>
       <details class="faq-item">
         <summary class="faq-question">How does TAVARDT assist engineering teams?</summary>
@@ -856,7 +889,6 @@ function renderResults(score, findings, targetUrl) {
 
   scoreNum.textContent = score;
 
-  // Gauge animation (circumference = 2 * PI * 66 = 414.69)
   const offset = 414.69 - (score / 100 * 414.69);
   gaugeFg.style.strokeDashoffset = offset;
 
@@ -874,7 +906,6 @@ function renderResults(score, findings, targetUrl) {
     scoreVerdict.style.color = 'var(--green)';
   }
 
-  // Build findings cards
   findingsGrid.innerHTML = findings.map(f => `
     <div class="finding-card ${f.severity}">
       <span class="finding-badge">${f.severity}</span>
@@ -886,7 +917,6 @@ function renderResults(score, findings, targetUrl) {
     </div>
   `).join('');
 
-  // Update WhatsApp link with customized score and target
   const customWaText = encodeURIComponent(`Hello Sofia, I ran the Vibe Coding Security Scanner on my application and discovered perimeter risks. I need engineering assistance to harden our deployment. (${targetUrl} - ${score}/100)`);
   waBtn.href = `https://wa.me/5584987721775?text=${customWaText}`;
 }
