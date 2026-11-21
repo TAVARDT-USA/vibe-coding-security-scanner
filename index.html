@@ -263,7 +263,7 @@
     line-height: 1.2 !important;
   }
   .tavardt-hero h1 span {
-    color: #7b88ff !important;
+    color: #ffffff !important;
   }
   .tavardt-hero p {
     font-size: 1.05rem !important;
@@ -635,7 +635,84 @@
     color: #64748b !important;
     box-sizing: border-box !important;
   }
-  </style>
+  
+/* ==========================================================================
+   TAVARDT UI/UX DIRECTIVES: CENTERED H2, 2-COL VECTORS & CRISP WHITE H1
+   ========================================================================== */
+.tavardt-hero h1, .hero h1, h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 0 12px 0 !important;
+  color: #ffffff !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.tavardt-hero h1 span, .hero h1 span, h1 span {
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+h2, .aeo-card h2, .vectors-section h2, .faq-section h2, .card h2, .hero h2, .findings-header h2 {
+  text-align: center !important;
+}
+.vectors-section .vectors-grid, .vectors-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 768px) {
+  .vectors-section .vectors-grid, .vectors-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+.vector-card {
+  background: linear-gradient(145deg, rgba(14, 21, 38, 0.75) 0%, rgba(9, 14, 26, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 24px 28px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.vector-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 4px !important;
+  height: 100% !important;
+  background: linear-gradient(180deg, #1e00ff 0%, rgba(30, 0, 255, 0.2) 100%) !important;
+  border-radius: 4px 0 0 4px !important;
+}
+.vector-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(30, 0, 255, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(30, 0, 255, 0.15) !important;
+}
+.vector-title {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.4 !important;
+}
+.vector-desc {
+  font-size: 0.92rem !important;
+  color: #94a3b8 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+</style>
 </head>
 <body>
 
