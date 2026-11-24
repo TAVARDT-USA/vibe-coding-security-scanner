@@ -54,18 +54,17 @@ Defensive architecture and cybersecurity controls aligned with NIST SP 800-53, C
 
 ***
 
-## Official Links & Resources
+## Useful Links
 
-* **Live Hub:** [https://tavardt-usa.github.io/vibe-coding-security-scanner/](https://tavardt-usa.github.io/vibe-coding-security-scanner/)
-* **TAVARDT Portal:** [Institutional Portal](https://ag.tavardt.com/)
-* **Tools:** [Tools Hub](https://tools.tavardt.com/)
+* **Corporate Portal:** https://ag.tavardt.com/
+* **Diagnostic Suite:** https://tools.tavardt.com/
+* **Technical Contact:** https://ag.tavardt.com/contact/
 
 ***
 
 ## Governance and Sovereignty
 
 * **Sovereign Unit**: **TAVARDT United States** (`TAVARDT-USA`)
-* **Core Standards**: [00-core Governance](https://github.com/TAVARDT-USA/00-core)
 * **Diagnostic Portal**: **TAVARDT US Diagnostic Suite**
 * **Enterprise Security**: [TAVARDT US Cybersecurity](https://ag.tavardt.com/cybersecurity/)
 
