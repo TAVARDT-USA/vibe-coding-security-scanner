@@ -61,3 +61,7 @@ Defensive architecture and cybersecurity controls aligned with NIST SP 800-53, C
 * **Tools:** [Central de Ferramentas](https://tools.tavardt.com/us/)
 
 &copy; 2026 TAVARDT. All rights reserved.
+
+***
+
+© 2026 TAVARDT. All rights reserved.
