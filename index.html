@@ -9,63 +9,76 @@
 <meta content="index, follow" name="robots"/>
 <link href="https://tavardt-usa.github.io/vibe-coding-security-scanner/" rel="canonical"/>
 <link href="./favicon.ico" rel="icon" type="image/x-icon"/>
-
 <meta content="Hardening Guide &amp; Mitigation: Vibe Coding &amp; AI Applications | TAVARDT USA" property="og:title"/>
 <meta content="Defensive reference against client-side environment variable leaks, exposed sourcemaps, and missing Row Level Security in AI-generated software." property="og:description"/>
 <meta content="https://tavardt-usa.github.io/vibe-coding-security-scanner/" property="og:url"/>
 <meta content="website" property="og:type"/>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "name": "TAVARDT Vibe Coding Security & AI Architecture Auditor",
-        "operatingSystem": "All",
-        "applicationCategory": "SecurityApplication",
-        "offers": {
-          "@type": "Offer",
-          "price": "0.00",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "TAVARDT USA",
-          "url": "https://ag.tavardt.com/"
-        }
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "TAVARDT Vibe Coding Security & AI Architecture Auditor",
+      "operatingSystem": "All",
+      "applicationCategory": "SecurityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
       },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What makes applications built with Vibe Coding vulnerable to data exposure?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Accelerated AI generation tools often embed privileged API keys in client-side environment variables (such as NEXT_PUBLIC_ or VITE_) and bundle active sourcemaps (.js.map) into production without enforcing Row Level Security (RLS) on relational databases."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why is the exposure of .js.map files in production a critical security risk?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Production .js.map files allow attackers to fully reverse-engineer original TypeScript source code, exposing internal variable names, unauthenticated backend endpoints, inline developer comments, and structural parameters passed to AI models."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How to deterministically audit the security posture of my Vibe Coding application?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Auditing must be conducted via direct socket analysis using the official audit_vibe_security.py script directly in your local terminal or CI/CD pipeline, validating sourcemaps, HTTP headers, and client bundles without browser sandbox limits."
-            }
-          }
-        ]
+      "author": {
+        "@type": "Organization",
+        "name": "TAVARDT USA",
+        "url": "https://ag.tavardt.com/"
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Vibe Coding and why does it introduce security vulnerabilities?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vibe coding refers to building production software via AI assistants without manual architectural review, frequently leaking hardcoded secrets, misconfiguring public database policies, and exposing source maps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the exposure of .js.map files in production a critical security risk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Production .js.map files allow attackers to reconstruct the entire proprietary frontend and server action source code, revealing secret API routes and schema definitions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to prevent secret AI API keys from compiling into client JavaScript bundles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Never reference secret keys in client components. Isolate all LLM provider calls within serverless edge functions or authenticated backend APIs protected by strict CORS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the role of Row Level Security (RLS) in Supabase or PostgreSQL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Row Level Security ensures that database queries executed with public anonymous keys cannot read or alter unauthorized records, stopping privilege escalation attacks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to deterministically audit the security posture of my Vibe Coding application?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Auditing must be conducted via direct socket analysis using the TAVARDT CLI scanner, combined with manual source map verification and API boundary reviews."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -714,7 +727,7 @@
 <header class="tavardt-header">
 <div class="tavardt-header-inner">
 <a class="tavardt-brand" href="https://ag.tavardt.com/" rel="noopener" target="_blank">
-<span class="tavardt-logo-text">TAVARDT<span class="tavardt-brand-dot">.</span></span>
+<span class="tavardt-logo-text">TAVARDT</span>
 </a>
 <nav class="tavardt-nav">
 <a class="tavardt-nav-link" href="https://ag.tavardt.com/" rel="noopener" target="_blank">Portal</a>
@@ -730,9 +743,9 @@
 <section class="cli-hero-box">
 <div class="cli-header">
 <div class="cli-dots">
-<span class="cli-dot red"></span>
-<span class="cli-dot yellow"></span>
-<span class="cli-dot green"></span>
+
+
+
 <span class="cli-title">Local CLI Terminal Tests</span>
 </div>
 <button class="cli-copy-btn" id="btn-copy-cli" onclick="copyCliCommand()" type="button">Copy</button>
@@ -852,6 +865,15 @@ python audit_vibe_security.py https://your-application.com</div>
 </div>
 </div>
 </section>
+
+<div class="cta-card">
+<h3>Need Enterprise Hardening for AI-Generated &amp; Vibe Coding Applications?</h3>
+<p>The TAVARDT cybersecurity engineering division audits source bundles, locks down Supabase Row Level Security (RLS), isolates sensitive API secrets, and configures Cloudflare Zero Trust protection within 24 hours.</p>
+<div class="cta-btns">
+<a class="btn-wa" href="https://wa.me/5584987721775?text=Hello%20Sofia%2C%20I%20ran%20the%20Vibe%20Coding%20Security%20Scanner%20at%20TAVARDT%20USA%20and%20would%20like%20technical%20assistance%20hardening%20our%20application." rel="noopener" target="_blank">Direct Support with Sofia (WhatsApp)</a>
+<a class="btn-corp" href="https://ag.tavardt.com/cybersecurity/" rel="noopener" target="_blank">Explore Cybersecurity Services</a>
+</div>
+</div>
 <section class="faq-section">
 <h2 class="faq-title">Frequently Asked Questions on Vibe Coding &amp; AI Security</h2>
 <div class="faq-list">
