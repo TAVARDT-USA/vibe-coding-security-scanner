@@ -1,5 +1,10 @@
 # Vibe Coding Security & AI Architecture Auditor
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-5b3cf5.svg)](https://tavardt-usa.github.io/vibe-coding-security-scanner/)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Security](https://img.shields.io/badge/Security-AI%20Architecture-blue.svg)](https://tavardt-usa.github.io/vibe-coding-security-scanner/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 Corporate defensive architecture guide, credential leakage mitigation, and deterministic CLI auditing utility for applications built with AI development tools (Vibe Coding).
 
 ## Threat Surface in AI-Generated Applications
@@ -52,7 +57,7 @@ Defensive architecture and cybersecurity controls aligned with NIST SP 800-53, C
 ## Official Links & Resources
 
 * **Live Hub:** [https://tavardt-usa.github.io/vibe-coding-security-scanner/](https://tavardt-usa.github.io/vibe-coding-security-scanner/)
-* **TAVARDT Portal:** [https://ag.tavardt.com/us/](https://ag.tavardt.com/us/)
-* **Tools:** [https://tools.tavardt.com/us/](https://tools.tavardt.com/us/)
+* **TAVARDT Portal:** [Portal Institucional](https://ag.tavardt.com/us/)
+* **Tools:** [Central de Ferramentas](https://tools.tavardt.com/us/)
 
 &copy; 2026 TAVARDT. All rights reserved.
