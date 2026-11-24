@@ -172,8 +172,8 @@ def scan_target(target_url, check_sourcemaps=True):
 def main():
     parser = argparse.ArgumentParser(description="TAVARDT Vibe Coding Security Scanner")
     parser.add_argument("url", help="Target application URL to audit (e.g. https://my-app.vercel.app)")
-    parser.add_argument("--json", action="store_true", help="Output audit report as JSON")
-    parser.add_argument("--no-sourcemaps", action="store_true", help="Skip sourcemap inspection")
+    parser.add_argument("-json", "--json", action="store_true", help="Output audit report as JSON")
+    parser.add_argument("-no-sourcemaps", "--no-sourcemaps", action="store_true", help="Skip sourcemap inspection")
     args = parser.parse_args()
 
     if not args.json:
