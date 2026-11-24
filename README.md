@@ -62,4 +62,18 @@ Defensive architecture and cybersecurity controls aligned with NIST SP 800-53, C
 
 ***
 
+## Governance and Sovereignty
+
+* **Sovereign Unit**: **TAVARDT United States** (`TAVARDT-USA`)
+* **Core Standards**: [00-core Governance](https://github.com/TAVARDT-USA/00-core)
+* **Diagnostic Portal**: **TAVARDT US Diagnostic Suite**
+* **Enterprise Security**: [TAVARDT US Cybersecurity](https://ag.tavardt.com/us/cybersecurity/)
+
+***
+
+### License
+Released under the MIT License. See [LICENSE](LICENSE) for full details.
+
+***
+
 © 2026 TAVARDT. All rights reserved.
